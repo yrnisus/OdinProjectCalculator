@@ -106,3 +106,39 @@ div .red {
 .calcGridContainer div:active {
     transform: scale(.97);
 }
+
+
+
+
+
+/* Mobile */
+
+
+@media only screen and (max-width: 500px) {
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .calcBG {
+        width: 350px;
+    }
+
+    .calcGridContainer {
+        width: 100%;
+    }
+
+    .calcGridContainer div {
+        width: 70px;
+        height: 70px;
+        gap: 0;
+    }
+
+    div #equal {
+        width: 150px;
+    }
+
+}
