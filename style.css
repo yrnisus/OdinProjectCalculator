@@ -1,0 +1,108 @@
+body {
+    padding: 0;
+    margin: 0;
+    background: var(--blue);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Staatliches', cursive;
+}
+
+:root {
+    --white: #F0F0F2; 
+    --lightblue: #A1B7D1;
+    --blue: #4C6DBA;
+    --red: #E84855;
+    --silver: #7A7773;
+  }
+
+.calcBG {
+    width: 550px;
+    height: 800px;
+    background: var(--white);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    -webkit-box-shadow: inset 0 6px 0 #fff, 0 6px 0 #E0E0E0;
+    -moz-box-shadow: inset 0 6px 0 #fff, 0 6px 0 #E0E0E0;
+    box-shadow: inset 0 6px 0 #fff, 0 6px 0 #E0E0E0;
+}
+
+.calcBody {
+    width: 90%;
+}
+
+.outputBox {
+    font-size: 30px;
+    font-weight: bold;
+    display: flex;
+    justify-content: right;
+    align-items: flex-end;
+    margin-top: 40px;
+    height: 150px;
+    background: var(--lightblue);
+    border: 2px solid var(--silver);
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 4px 0 #92ABC9, inset 0 -1px 0 #C8D5E4;
+    -moz-box-shadow: inset 0 4px 0 #92ABC9, inset 0 -1px 0 #C8D5E4;
+    box-shadow: inset 0 4px 0 #92ABC9, inset 0 -1px 0 #C8D5E4;
+}
+
+.outputBox p {
+    margin-right: 20px;
+    margin-bottom: 0;
+}
+
+.calcGridContainer {
+    margin-top: 40px;
+    height: 520px;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-areas: "clear undo negative divide"
+                         "7     8    9        multiply"
+                         "4     5    6        subtract"
+                         "1     2    3        add"
+                         "0     .    equal    equal";
+}
+
+.calcGridContainer div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--silver);
+    width: 90px;
+    height: 90px;
+    border-radius: 10px;
+    color: var(--white);
+    font-size: 42px;
+    -webkit-box-shadow: inset 0 6px 0 #928F8B, 0 6px 0 #696663;
+    -moz-box-shadow: inset 0 6px 0 #928F8B, 0 6px 0 #696663;
+    box-shadow: inset 0 6px 0 #928F8B, 0 6px 0 #696663;
+    transition: .1s;
+}
+
+#equal {
+    grid-area: equal;
+    background-color: var(--silver);
+    width: 210px;
+}
+
+div .symbol {
+    font-size: 70px;
+}
+
+div .red {
+    background-color: var(--red);
+    -webkit-box-shadow: inset 0 6px 0 #ED6E78, 0 6px 0 #E42535;
+    -moz-box-shadow: inset 0 6px 0 #ED6E78, 0 6px 0 #E42535;
+    box-shadow: inset 0 6px 0 #ED6E78, 0 6px 0 #E42535;
+}
+
+.calcGridContainer div:active {
+    transform: scale(.97);
+}
