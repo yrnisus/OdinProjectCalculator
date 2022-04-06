@@ -4,6 +4,9 @@ let valueString = '';
 let total = 0;
 let totalString = '';
 let firstOperator = true;
+let operator = '';
+let prevOperator = '';
+let newOperator = '';
 
 // Button Listeners
 const numButtons = document.querySelectorAll('#num').forEach(item => {
@@ -18,57 +21,59 @@ const numButtons = document.querySelectorAll('#num').forEach(item => {
 const operatorBtns = document.querySelectorAll('#operator').forEach(item => {
     // On click store the valueString of the button
     item.addEventListener('mousedown', event => {
-        let operator = item.innerHTML;
+        newOperator = item.innerHTML;
         //do math first
-        operate(operator);
-        displaytotalString();
-        valueString = '';
-        displayNum();
+        operate(currentOperator);
         firstOperator = false;
     })
 
 })
 
-// perform operations
-function operate(operator) {
-    if (totalString !== '')
-        total = parseInt(totalString, 10);
+// perform math operations
+function operate(newOperator) {
     value = parseInt(valueString, 10);
+    // First time an operator is used total = value;
+    if (firstOperator) {
+        total = value;
+    }
 
-    switch (operator) {
-        case '+':
-            console.log('plus');
-            total += value;
-            console.log(total);
-            break;
-        case '-':
-            console.log('subtract');
-            if (firstOperator) {
-                total = value;
-                break
-            }
-            total -= value;
-            break;
-        case '×':
-            console.log('x');
-            if (firstOperator) {
-                total = value;
-                break
-            }
-            total *= value;
-            break;
-        case '÷':
-            console.log('/');
-            if (firstOperator) {
-                total = value;
-                break
-            }
-            total /= value;
-            break;
+
+    //After the first operator
+    if (totalString !== '') {
+        total = parseInt(totalString, 10);
+
+        // value = parseInt(valueString, 10);
+
+        switch (operator) {
+            case '+':
+                console.log('plus');
+                total += value;
+                console.log(total);
+                break;
+            case '-':
+                console.log('subtract');
+                total -= value;
+                break;
+            case '×':
+                console.log('x');
+                total *= value;
+                break;
+            case '÷':
+                console.log('/');
+                total /= value;
+                break;
+            // case '=':
+            //     console.log('=');
+            //     break;
+            default:
+                console.log("error");
+                break;
+        }
     }
 
     totalString = String(total);
-
+    valueString = '';
+    displayBoth();
 }
 
 
@@ -77,26 +82,32 @@ const equalBtn = document.getElementById('equal');
 
 // Click equal btn
 equalBtn.addEventListener('mousedown', event => {
-    console.log(valueString);
+    operate(operator);
 })
 
 // Click clear btn
 const clearBtn = document.getElementById('clear');
 clearBtn.addEventListener('mousedown', event => {
+    clearVariables();
+    displayBoth();
+})
+
+function clearVariables() {
     valueString = '';
     totalString = '';
     total = 0;
     value = 0;
     firstOperator = true;
-    displayNum();
-    displaytotalString();
-})
-
-
+}
 
 
 
 // display functions
+
+function displayBoth() {
+    document.getElementById('outputText').innerHTML = valueString;
+    document.getElementById('totalText').innerHTML = totalString;
+}
 
 function displayNum() {
     document.getElementById('outputText').innerHTML = valueString;
