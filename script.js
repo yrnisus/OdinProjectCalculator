@@ -4,7 +4,6 @@ let valueString = '';
 let total = 0;
 let totalString = '';
 let firstOperator = true;
-let operator = '';
 let prevOperator = '';
 let newOperator = '';
 
@@ -23,13 +22,33 @@ const operatorBtns = document.querySelectorAll('#operator').forEach(item => {
     item.addEventListener('mousedown', event => {
         newOperator = item.innerHTML;
         //do math first
-        operate(currentOperator);
+        operate(newOperator);
         firstOperator = false;
     })
 
 })
 
-// perform math operations
+// Click equal btn
+const equalBtn = document.getElementById('equal');
+equalBtn.addEventListener('mousedown', event => {
+    newOperator = equalBtn.innerHTML;
+    operate(newOperator);
+    document.getElementById('outputText').innerHTML = total;
+    document.getElementById('totalText').innerHTML = "";
+})
+
+// Click clear btn
+const clearBtn = document.getElementById('clear');
+clearBtn.addEventListener('mousedown', event => {
+    clearVariables();
+    displayBoth();
+})
+
+
+
+// perform math operations after operatorBtn event listener onclick
+// User sends a value which is to be used with previous operator
+//  On first input the previous operator is 0 + input
 function operate(newOperator) {
     value = parseInt(valueString, 10);
     // First time an operator is used total = value;
@@ -37,14 +56,11 @@ function operate(newOperator) {
         total = value;
     }
 
-
     //After the first operator
     if (totalString !== '') {
         total = parseInt(totalString, 10);
 
-        // value = parseInt(valueString, 10);
-
-        switch (operator) {
+        switch (prevOperator) {
             case '+':
                 console.log('plus');
                 total += value;
@@ -60,11 +76,16 @@ function operate(newOperator) {
                 break;
             case '÷':
                 console.log('/');
+                if(value !== 0)
                 total /= value;
+                else if(value == 0) {
+                alert("Why would you even try that");
+                total = 0;
+                }
                 break;
-            // case '=':
-            //     console.log('=');
-            //     break;
+            case '=':
+                console.log(total);
+                break;
             default:
                 console.log("error");
                 break;
@@ -74,23 +95,8 @@ function operate(newOperator) {
     totalString = String(total);
     valueString = '';
     displayBoth();
+    prevOperator = newOperator;
 }
-
-
-
-const equalBtn = document.getElementById('equal');
-
-// Click equal btn
-equalBtn.addEventListener('mousedown', event => {
-    operate(operator);
-})
-
-// Click clear btn
-const clearBtn = document.getElementById('clear');
-clearBtn.addEventListener('mousedown', event => {
-    clearVariables();
-    displayBoth();
-})
 
 function clearVariables() {
     valueString = '';
