@@ -146,8 +146,26 @@ div .red {
 
     .outputBox {
         margin-top: 30px;
-        height: 80px;
+        height: 100px;
+        justify-content: flex-end;
     }
+
+    .outputBox p {
+        margin: 0 10px 0 0;
+    }
+
+    #outputText {
+        border: 2px solid red;
+        margin-bottom: 10px;
+    }
+    
+    #totalText {
+        border: 2px solid red;
+        color: #334C84;
+        margin-bottom: 10px;
+    }
+
+
 
     .calcBG {
         width: 330px;
