@@ -56,11 +56,11 @@ undoBtn.addEventListener('mousedown', event => {
 // click decimal button
 const decimalBtn = document.getElementById('decimal');
 decimalBtn.addEventListener('mousedown', event => {
-    if (!valueString.includes('.')) { 
-    console.log('false');
-    valueString = valueString.concat('.');
-    displayNum();
-}
+    if (!valueString.includes('.')) {
+        console.log('false');
+        valueString = valueString.concat('.');
+        displayNum();
+    }
 })
 
 
@@ -165,4 +165,29 @@ function displayNum() {
 
 function displaytotalString() {
     document.getElementById('totalText').innerHTML = totalString;
+}
+
+
+// Keyboard support
+document.addEventListener('keydown', (event) => {
+    let key = event.key;
+    let code = event.code;
+    // // Alert the key name and key code on keydown
+    // console.log(`Key pressed ${key} \r\n Key code value: ${code}`);
+    checkIfNum(key);
+    displayNum();
+}, false);
+
+function checkIfNum(key) {
+    if (Number.isInteger(parseInt(key))) {
+        valueString += key;
+    }
+}
+
+function checkIfOperator(key) {
+    const operatorList = ['+', '-', '*', '/', ];
+
+    if (Number.isInteger(parseInt(key))) {
+        valueString += key;
+    }
 }
