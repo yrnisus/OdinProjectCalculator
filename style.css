@@ -15,6 +15,7 @@ body {
     --blue: #4C6DBA;
     --red: #E84855;
     --silver: #7A7773;
+    --darkblue: #334C84;
 }
 
 .calcBG {
@@ -109,7 +110,6 @@ body {
 
 #equal {
     grid-area: equal;
-    background-color: var(--silver);
     width: 210px;
 }
 
@@ -124,11 +124,16 @@ div .red {
     box-shadow: inset 0 6px 0 #ED6E78, 0 6px 0 #E42535;
 }
 
+div .blue {
+    background-color: var(--darkblue);
+    -webkit-box-shadow: inset 0 6px 0 #3F5EA2, 0 6px 0 #283C67;
+    -moz-box-shadow: inset 0 6px 0 #3F5EA2, 0 6px 0 #283C67;
+    box-shadow: inset 0 6px 0 #3F5EA2, 0 6px 0 #283C67;
+}
+
 .calcGridContainer div:active {
     transform: scale(.97);
 }
-
-
 
 
 
@@ -196,4 +201,9 @@ div .red {
         width: 130px;
     }
 
+    div #undo {
+        font-size: 40px;
+    }
+
 }
+

@@ -47,18 +47,20 @@ clearBtn.addEventListener('mousedown', event => {
 // Click undo button
 const undoBtn = document.getElementById('undo');
 undoBtn.addEventListener('mousedown', event => {
-    if(prevOperator !== '=') {
-    console.log('undo');
-    valueString = valueString.slice(0, valueString.length -1);
-    displayNum(); }
+    if (prevOperator !== '=') {
+        valueString = valueString.slice(0, valueString.length - 1);
+        displayNum();
+    }
 })
 
 // click decimal button
 const decimalBtn = document.getElementById('decimal');
 decimalBtn.addEventListener('mousedown', event => {
-    if(!valueString.includes('.'));
+    if (!valueString.includes('.')) { 
+    console.log('false');
     valueString = valueString.concat('.');
     displayNum();
+}
 })
 
 
@@ -78,7 +80,7 @@ function getPercent() {
     totalString = String(total);
     valueString = '';
     displayBoth();
-    
+
 }
 
 // perform math operations after operatorBtn event listener onclick
@@ -93,8 +95,8 @@ function operate(newOperator) {
 
     //After the first operator
     if (totalString !== '') {
-        if(prevOperator !== '%')
-        total = parseFloat(totalString, 1);
+        if (prevOperator !== '%')
+            total = parseFloat(totalString, 1);
 
         switch (prevOperator) {
             case '+':
@@ -133,7 +135,7 @@ function operate(newOperator) {
         }
     }
     totalString = String(total);
-    if(totalString.includes('.'))
+    if (totalString.includes('.'))
         total = parseFloat(total.toFixed(4));
     valueString = '';
     displayBoth();
