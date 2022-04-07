@@ -53,6 +53,14 @@ undoBtn.addEventListener('mousedown', event => {
     displayNum(); }
 })
 
+// click decimal button
+const decimalBtn = document.getElementById('decimal');
+decimalBtn.addEventListener('mousedown', event => {
+    if(!valueString.includes('.'));
+    valueString = valueString.concat('.');
+    displayNum();
+})
+
 
 // Click percent button
 const percentBtn = document.getElementById('percent');
@@ -61,6 +69,7 @@ percentBtn.addEventListener('mousedown', event => {
     getPercent();
 })
 
+// converts to percentage
 function getPercent() {
     total = valueString * .01;
     // console.log(`Total ${total}`);
@@ -76,7 +85,7 @@ function getPercent() {
 // User sends a value which is to be used with previous operator
 //  On first input the previous operator is 0 + input
 function operate(newOperator) {
-    value = parseInt(valueString, 10);
+    value = parseFloat(valueString, 10);
     // First time an operator is used total = value;
     if (firstOperator) {
         total = value;
@@ -85,7 +94,7 @@ function operate(newOperator) {
     //After the first operator
     if (totalString !== '') {
         if(prevOperator !== '%')
-        total = parseInt(totalString, 10);
+        total = parseFloat(totalString, 1);
 
         switch (prevOperator) {
             case '+':
@@ -123,8 +132,9 @@ function operate(newOperator) {
                 break;
         }
     }
-
     totalString = String(total);
+    if(totalString.includes('.'))
+        total = parseFloat(total.toFixed(4));
     valueString = '';
     displayBoth();
     prevOperator = newOperator;
