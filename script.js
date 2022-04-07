@@ -44,6 +44,17 @@ clearBtn.addEventListener('mousedown', event => {
     displayBoth();
 })
 
+// Click undo button
+const undoBtn = document.getElementById('undo');
+undoBtn.addEventListener('mousedown', event => {
+    if(prevOperator !== '=') {
+    console.log('undo');
+    valueString = valueString.slice(0, valueString.length -1);
+    displayNum(); }
+})
+
+
+// Click percent button
 const percentBtn = document.getElementById('percent');
 percentBtn.addEventListener('mousedown', event => {
     prevOperator = percentBtn.innerHTML;
