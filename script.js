@@ -44,7 +44,22 @@ clearBtn.addEventListener('mousedown', event => {
     displayBoth();
 })
 
+const percentBtn = document.getElementById('percent');
+percentBtn.addEventListener('mousedown', event => {
+    prevOperator = percentBtn.innerHTML;
+    getPercent();
+})
 
+function getPercent() {
+    total = valueString * .01;
+    // console.log(`Total ${total}`);
+    // console.log(`value ${value}`);
+    firstOperator = !firstOperator;
+    totalString = String(total);
+    valueString = '';
+    displayBoth();
+    
+}
 
 // perform math operations after operatorBtn event listener onclick
 // User sends a value which is to be used with previous operator
@@ -58,6 +73,7 @@ function operate(newOperator) {
 
     //After the first operator
     if (totalString !== '') {
+        if(prevOperator !== '%')
         total = parseInt(totalString, 10);
 
         switch (prevOperator) {
@@ -76,15 +92,20 @@ function operate(newOperator) {
                 break;
             case '÷':
                 console.log('/');
-                if(value !== 0)
-                total /= value;
-                else if(value == 0) {
-                alert("Why would you even try that");
-                total = 0;
+                if (value !== 0)
+                    total /= value;
+                else if (value == 0) {
+                    alert("Why would you even try that");
+                    total = 0;
                 }
                 break;
             case '=':
                 console.log(total);
+                break;
+            case '%':
+                total *= value;
+                // console.log(`Total ${total}`);
+                // console.log(`value ${value}`);
                 break;
             default:
                 console.log("error");
