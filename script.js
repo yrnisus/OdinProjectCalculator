@@ -34,6 +34,7 @@ const equalBtn = document.getElementById('equal');
 equalBtn.addEventListener('mousedown', event => {
     newOperator = equalBtn.innerHTML;
     operate(newOperator);
+    // This should be fine
     document.getElementById('outputText').innerHTML = total;
     document.getElementById('totalText').innerHTML = "";
     hideOperator();
@@ -51,8 +52,11 @@ const undoBtn = document.getElementById('undo');
 undoBtn.addEventListener('mousedown', event => {
     if (prevOperator !== '=') {
         valueString = valueString.slice(0, valueString.length - 1);
-        displayNum();
     }
+    if (prevOperator == '=' && firstOperator == true) {
+        valueString = valueString.slice(0, valueString.length - 1);
+    }
+    displayNum();
 })
 
 // click decimal button
