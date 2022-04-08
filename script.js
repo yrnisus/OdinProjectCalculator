@@ -21,6 +21,7 @@ const operatorBtns = document.querySelectorAll('#operator').forEach(item => {
     // On click store the valueString of the button
     item.addEventListener('mousedown', event => {
         newOperator = item.innerHTML;
+        showOperator();
         //do math first
         operate(newOperator);
         firstOperator = false;
@@ -35,6 +36,7 @@ equalBtn.addEventListener('mousedown', event => {
     operate(newOperator);
     document.getElementById('outputText').innerHTML = total;
     document.getElementById('totalText').innerHTML = "";
+    hideOperator();
 })
 
 // Click clear btn
@@ -190,4 +192,12 @@ function checkIfOperator(key) {
     if (Number.isInteger(parseInt(key))) {
         valueString += key;
     }
+}
+
+function showOperator() {
+    document.getElementById('operatorText').innerHTML = newOperator;
+}
+
+function hideOperator() {
+    document.getElementById('operatorText').innerHTML = '';
 }

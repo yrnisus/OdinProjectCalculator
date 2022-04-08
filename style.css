@@ -52,7 +52,6 @@ body {
 }
 
 .outputBox p {
-    margin-right: 20px;
 }
 
 #outputText {
@@ -60,11 +59,13 @@ body {
     height: 30px;
 }
 
-#totalText {
+
+.totalTextContainer {
     color: #334C84;
     height: 30px;
+    display: flex;
+    margin-bottom: 10px;
 }
-
 
 .calcGridContainer {
     margin-top: 40px;
