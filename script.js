@@ -73,7 +73,7 @@ decimalBtn.addEventListener('mousedown', event => {
 // Click percent button
 const percentBtn = document.getElementById('percent');
 percentBtn.addEventListener('mousedown', event => {
-    prevOperator = percentBtn.innerHTML;
+    newOperator = percentBtn.innerHTML;
     getPercent();
 })
 
