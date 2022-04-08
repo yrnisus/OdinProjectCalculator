@@ -79,12 +79,18 @@ percentBtn.addEventListener('mousedown', event => {
 
 // converts to percentage
 function getPercent() {
-    total = valueString * .01;
-    // console.log(`Total ${total}`);
-    // console.log(`value ${value}`);
-    firstOperator = !firstOperator;
-    totalString = String(total);
-    valueString = '';
+    if (totalString == '') {
+        total = valueString * .01;
+        // console.log(`Total ${total}`);
+        // console.log(`value ${value}`);
+        firstOperator = !firstOperator;
+        totalString = String(total);
+        valueString = '';
+    }
+    else {
+        valueString *= .01;
+        value = valueString * .01;
+    }
     displayBoth();
 
 }
@@ -191,7 +197,7 @@ function checkIfNum(key) {
 }
 
 function checkIfOperator(key) {
-    const operatorList = ['+', '-', '*', '/', ];
+    const operatorList = ['+', '-', '*', '/',];
 
     if (Number.isInteger(parseInt(key))) {
         valueString += key;
