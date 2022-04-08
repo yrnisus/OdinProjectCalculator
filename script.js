@@ -6,6 +6,7 @@ let totalString = '';
 let firstOperator = true;
 let prevOperator = '';
 let newOperator = '';
+let equalPressed = false;
 
 // Button Listeners
 const numButtons = document.querySelectorAll('#num').forEach(item => {
@@ -21,6 +22,7 @@ const operatorBtns = document.querySelectorAll('#operator').forEach(item => {
     // On click store the valueString of the button
     item.addEventListener('mousedown', event => {
         newOperator = item.innerHTML;
+        equalPressed = false;
         showOperator();
         //do math first
         operate(newOperator);
@@ -33,6 +35,7 @@ const operatorBtns = document.querySelectorAll('#operator').forEach(item => {
 const equalBtn = document.getElementById('equal');
 equalBtn.addEventListener('mousedown', event => {
     newOperator = equalBtn.innerHTML;
+    equalPressed = true;
     operate(newOperator);
     // This should be fine
     document.getElementById('outputText').innerHTML = total;
@@ -100,12 +103,28 @@ function getPercent() {
 //  On first input the previous operator is 0 + input
 function operate(newOperator) {
     value = parseFloat(valueString, 10);
+    // If prev and new are both = then operator button wasnt pressed
+    // clear the variables
+    if(equalPressed && prevOperator == '=') {
+        totalString = valueString;
+        total = parseFloat(totalString);
+        value = 0;
+        valueString = '';
+        console.log('test');
+        displayBoth();
+        return;
+    }
+
     // First time an operator is used total = value;
     if (firstOperator) {
         total = value;
     }
 
-    //After the first operator
+    //User spams the same operator button
+    if(prevOperator === newOperator && firstOperator !== true) {
+        return;
+    }
+     //After the first operator
     if (totalString !== '') {
         if (prevOperator !== '%')
             total = parseFloat(totalString, 1);
